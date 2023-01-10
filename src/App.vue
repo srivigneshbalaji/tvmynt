@@ -1,34 +1,22 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-    
-    </v-app-bar>
-
     <v-main>
-   <TVChartContainer/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import TVChartContainer from './components/TVChartContainer.vue';
 
 export default {
   name: 'App',
-
-  components: {
-    TVChartContainer,
-  },
 
   data: () => ({
     //
   }),
 };
 </script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -38,4 +26,3 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-</style>
