@@ -1,19 +1,22 @@
 <template>
   <div class="signupbgclr">
     <v-container fill-height class="SsoView">
-      <v-card class="mx-auto my-auto elevation-0 py-8 pb-1 rounded-lg text-center">
+      <v-row no-gutters>
+        <v-col cols="8"></v-col>
+        <v-col cols="4">
+          <v-card class="mx-auto my-auto elevation-0 py-8 pb-1 rounded-lg text-center">
         <div class="px-4 px-sm-6 px-md-8">
-          <div class="pb-4">
+          <div class="pb-16">
             <img src="@/assets/Mynt_pro_logo.svg" width="40%">
           </div>
-          <div class="pb-16">
+          <!-- <div class="pb-16">
             <img src="@/assets/tvlogo.svg" width="60%">
-          </div>
+          </div> -->
 
           <!-- <img src="@/assets/Group 277.svg" class="mt-2 mb-6" width="100%"> -->
           <v-card-action>
-
-            <v-btn to="/tv" outlined plain :ripple="false" block large class="btnout mb-2 rounded-md">
+            <!-- to="/tv" -->
+            <v-btn to="/tv" outlined :ripple="false" block large class="btnout mb-2 rounded-md">
               <span style="color:black;">
                 sign in with ZEBULL
               </span>
@@ -31,7 +34,7 @@
               </v-col>
             </v-row>
 
-            <v-btn href="https://oa.zebull.in" target="_blank" outlined plain :ripple="false" block large
+            <v-btn href="https://oa.zebull.in" target="_blank" outlined :ripple="false" block large
               class="btnout mb-2 rounded-md"><span style="color:black;">
                 Open an account
               </span></v-btn>
@@ -41,23 +44,39 @@
             <p style="color:#858B95;">By continuing with ZEBU, you agree our Terms and Privacy Policy
             </p>
           </v-card-subtitle>
+          <div>
+            <a href="https://www.zebuetrade.com/">
+              <img src="@/assets/zebuLogo.svg" width="30%">
+            </a>
+          </div>
+          <v-card-subtitle style="font-size:9px; color:#858B95;" class="text-center font-weigth-regular">
+            <p>Member name : Zebu Share and Wealth Managements Pvt. Ltd. <br>
+              NSE / BSE / MCX , SEBI Registration No: INZ000174634,<br> CDSL : 12080400
+              AMFI ARN : 113118 , Research Analyst : INH200006044
+            </p>
+
+            <p class="">v1.0.0.0</p>
+          </v-card-subtitle>
         </div>
       </v-card>
+        </v-col>
+
+      </v-row>
+    
     </v-container>
   </div>
 </template>
 
 <script>
-// import { appurl } from "../../apiUrl.js";
+import { appurl } from "../apiUrl.js";
 
 export default {
   data: () => ({}),
   methods: {
-    // signin() {
-    //   // console.log("pressed");
-    //   location.href = `https://zebull.in/?mode=SSO&vendor=MyZebu&redirectUrl=${appurl}/gsec`;
-
-    // },
+    signin() {
+      // console.log("pressed");
+      location.href = `https://zebull.in/?mode=SSO&vendor=MyZebu&redirectUrl=${appurl}/tv`;
+    },
   },
 };
 </script>

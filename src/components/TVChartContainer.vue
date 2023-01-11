@@ -256,6 +256,6 @@ export default {
 
 <style lang="scss" scoped>
 .TVChartContainer {
-  height: calc(100vh - 42px);
+  height: calc(100vh - 54px);
 }
 </style>
