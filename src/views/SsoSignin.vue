@@ -4,8 +4,8 @@
       <v-row no-gutters>
         <v-col cols="8"></v-col>
         <v-col cols="4">
-          <v-card class="mx-auto my-auto elevation-0 py-8 pb-1 rounded-lg text-center">
-            <div class="px-4 px-sm-6 px-md-8">
+          <v-card max-width="400" class="mx-auto my-auto elevation-0 py-8 pb-1 rounded-lg text-center">
+            <div class="px-4 px-sm-2">
               <div class="pb-16">
                 <img src="@/assets/Mynt_pro_logo.svg" width="40%">
               </div>
@@ -15,54 +15,81 @@
 
               <!-- <img src="@/assets/Group 277.svg" class="mt-2 mb-6" width="100%"> -->
               <v-card-action>
-                <!-- to="/tv" -->
-                <v-btn to="/tv" outlined :ripple="false" block large class="btnout mb-2 rounded-md">
-                  <span style="color:black;">
-                    sign in with ZEBULL
-                  </span>
-                </v-btn>
+                <div class="px-4">
+                  <!-- to="/tv" -->
+                  <v-btn @click="signin()" outlined :ripple="false" block large class="btnout mb-2 rounded-md">
+                    <span style="color:black;">
+                      sign in with ZEBULL
+                    </span>
+                  </v-btn>
 
-                <v-row no-gutters class="my-4">
-                  <v-col cols="5">
-                    <v-divider class="mx-2 mt-2" color="#DBE3EA"></v-divider>
-                  </v-col>
-                  <v-col cols="2">
-                    <p class="text-center caption mb-0"> or </p>
-                  </v-col>
-                  <v-col cols="5">
-                    <v-divider class="mx-2 mt-2" color="#DBE3EA"></v-divider>
-                  </v-col>
-                </v-row>
+                  <v-row no-gutters class="my-4">
+                    <v-col cols="5">
+                      <v-divider class="mx-2 mt-2" color="#DBE3EA"></v-divider>
+                    </v-col>
+                    <v-col cols="2">
+                      <p class="text-center caption mb-0"> or </p>
+                    </v-col>
+                    <v-col cols="5">
+                      <v-divider class="mx-2 mt-2" color="#DBE3EA"></v-divider>
+                    </v-col>
+                  </v-row>
 
-                <v-btn href="https://oa.zebull.in" target="_blank" outlined :ripple="false" block large
-                  class="btnout mb-2 rounded-md"><span style="color:black;">
-                    Open an account
-                  </span></v-btn>
+                  <v-btn href="https://oa.zebull.in" target="_blank" outlined :ripple="false" block large
+                    class="btnout mb-2 rounded-md"><span style="color:black;">
+                      Open an account
+                    </span></v-btn>
+                </div>
               </v-card-action>
 
-              <v-card-subtitle style="font-size:11px;" class="text-center">
-                <p style="color:#858B95;">By continuing with ZEBU, you agree our Terms and Privacy Policy
+              <v-card-subtitle style="font-size:12px;" class="text-center">
+                <p style="color:#858B95;">By continuing with MYNT pro by ZEBU, your agree our Terms and Privacy Policy
                 </p>
               </v-card-subtitle>
-              <div>
+              <!-- <div>
                 <a href="https://www.zebuetrade.com/">
                   <img src="@/assets/zebuLogo.svg" width="30%">
                 </a>
-              </div>
-              <v-card-subtitle style="font-size:9px; color:#858B95;" class="text-center font-weigth-regular">
+              </div> -->
+              <!-- <v-card-subtitle style="font-size:10px; color:#858B95;" class="text-center font-weigth-regular">
                 <p>Member name : Zebu Share and Wealth Managements Pvt. Ltd. <br>
                   NSE / BSE / MCX , SEBI Registration No: INZ000174634,<br> CDSL : 12080400
                   AMFI ARN : 113118 , Research Analyst : INH200006044
-                </p>
+                </p> 
 
-                <p class="">v1.0.0.0</p>
-              </v-card-subtitle>
+              </v-card-subtitle> -->
             </div>
           </v-card>
         </v-col>
+        <v-footer padless absolute>
+          <v-card flat tile width="100%" class="lighten-1 text-center">
 
+            <v-divider></v-divider>
+
+            <v-card-text style="font-size:12px; color:#858B95;">
+              <v-row no-gutters>
+                <v-col cols="11">
+                  <a class="footerrouterlink" target="blank" href="https://www.zebuetrade.com/">Zebu</a>
+                  Share and Wealth Managements Pvt. Ltd. | <a class="footerrouterlink" target="blank"
+                    href="https://www.sebi.gov.in/">SEBI</a> Registration No: INZ000174634 | <a class="footerrouterlink"
+                    target="blank" href="https://www.nseindia.com/">NSE</a> : 13179 | <a class="footerrouterlink"
+                    target="blank" href="https://www.bseindia.com/">BSE</a> :
+                  6550 | <a class="footerrouterlink" target="blank" href="https://www.mcxindia.com/">MCX</a> : 55730 |
+                  <a class="footerrouterlink" target="blank" href="https://www.cdslindia.com/index.html">CDSL</a> :
+                  12080400 | <a class="footerrouterlink" target="blank" href="https://www.amfiindia.com/">AMFI</a> ARN :
+                  113118 | Research Analyst : INH200006044
+                </v-col>
+                <v-divider vertical></v-divider>
+                <v-col cols="1">
+                  <p class="mb-0">v1.0.0.0</p>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
+        </v-footer>
       </v-row>
     </v-container>
+
   </div>
 </template>
 
@@ -113,6 +140,11 @@ export default {
 .SsoView {
   height: 100vh !important;
   overflow-y: scroll !important;
+}
+
+.footerrouterlink {
+  text-decoration: none !important;
+  color: #1e53e5;
 }
 
 @media only screen and (max-width: 600px) {
