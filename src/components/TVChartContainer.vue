@@ -1,7 +1,9 @@
 <template>
-  <div class="TVChartContainer" :id="containerId" />
+  <div>
+    <div class="TVChartContainer" :id="containerId" />
+  </div>
 </template>
- <script type="text/javascript" src="../../public/broker-sample/dist/bundle.js"></script>
+<script type="text/javascript" src="../../public/broker-sample/dist/bundle.js"></script>
 <script>
 import { widget } from "../../public/charting_library";
 import Datafeed from "../mixins/feedFactory.js";

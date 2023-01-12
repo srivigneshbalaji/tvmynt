@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div>
-      <v-card class="appbarbor elevation-0 rounded-0 px-4">
+      <v-card class="appbarbor elevation-0 rounded-0 pl-2 pr-1">
         <v-row no-gutters>
           <v-col class="my-auto" cols="6">
             <div>
@@ -138,6 +138,9 @@ export default {
           console.log(error);
         });
     }
+    if ((axiosthis.clientId == null) && (axiosthis.session == null)) {
+      axiosthis.$router.push("/");
+    }
 
 
   },
@@ -155,7 +158,7 @@ export default {
 
 <style>
 .appbarbor {
-  border-bottom: 4px solid rgba(0, 0, 0, 0.10) !important;
+  border-bottom: 4px solid #E0E3EB !important;
 }
 
 .v-menu__content {
