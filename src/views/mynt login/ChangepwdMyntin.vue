@@ -16,7 +16,7 @@
                                 <img src="@/assets/Mynt_pro_logo.svg" width="40%">
                             </div>
                             <p class="black--text headline font-weight-medium">
-                                <span>Reset Password & OTP Validation</span>
+                                <span>Change or Forgot Password</span>
                             </p>
 
                             <div class="px-4">
@@ -27,8 +27,8 @@
 
                                     <v-text-field class="mb-3" v-model="oldpassword" required
                                         :append-icon="oldpwseye ? 'mdi-eye' : 'mdi-eye-off'" :rules="oldpwsRules"
-                                        :type="oldpwseye ? 'text' : 'password'" label="Old Password"
-                                        hint="Enter the received Password through email/SMS."
+                                        :type="oldpwseye ? 'text' : 'password'" label="Old Password or Received Password"
+                                        hint="Enter the old Password for Change Password or received Password through email/SMS for Forgot Password."
                                         @click:append="oldpwseye = !oldpwseye"></v-text-field>
 
                                     <v-text-field class="mb-3" v-model="newpassword" required
@@ -107,7 +107,7 @@ export default {
         snackmsgbar: "",
         userIdvalid: true,
 
-        valid: false,
+        valid: true,
 
         fgotpwdcliid: '',
         userId: '',
@@ -129,12 +129,6 @@ export default {
         oldpwsRules: [
             v => !!v || 'Old Password is required',
         ],
-
-        // otpvalid: '',
-        // otpRules: [
-        //     v => !!v || 'OTP is required',
-        //     v => v.length == 5 || 'enter your 5 digit OTP',
-        // ],
     }),
 
     methods: {
@@ -166,9 +160,9 @@ export default {
                             axiosThis.snackbarclr = 'success';
                             axiosThis.snackmsgbar = "Password Change Success. Your new password will expire in 15 days";
                             setTimeout(function () {
-                                axiosThis.$router.push("/myntpro-signin");
+                                axiosThis.$router.push("/MyntPro_Signin");
                                 localStorage.removeItem("FgotPwduserid");
-                            }, 2000);
+                            }, 3000);
                         } else if (response.data.emsg == "Error Occurred : Password couldn't be changed as it is among the previous 3 passwords") {
                             axiosThis.snackbar = true;
                             axiosThis.snackbarclr = 'error';
@@ -196,7 +190,7 @@ export default {
             }
         },
         backtoMyntin() {
-            this.$router.push("/myntpro-signin");
+            this.$router.push("/MyntPro_Signin");
         },
     },
 

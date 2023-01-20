@@ -175,7 +175,7 @@ export default {
             }
         },
         backtoMyntin() {
-            this.$router.push("/myntpro-signin");
+            this.$router.push("/MyntPro_Signin");
         },
     },
 

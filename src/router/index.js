@@ -9,6 +9,7 @@ import TradingViewmynt from '../views/mynt login/TradingViewmynt.vue'
 import SsoMyntin from '../views/mynt login/SsoMyntin.vue'
 import FgotpwsMyntin from '../views/mynt login/FgotpwsMyntin.vue'
 import ChangepwdMyntin from '../views/mynt login/ChangepwdMyntin.vue'
+import OtploginMynt from '../views/mynt login/OtploginMynt.vue'
 
 Vue.use(VueRouter)
 
@@ -29,7 +30,7 @@ const routes = [
     component: SsoSignin
   },
   {
-    path: '/myntpro-signin',
+    path: '/MyntPro_Signin',
     name: 'Sso Mynt login',
     component: SsoMyntin
   },
@@ -42,6 +43,11 @@ const routes = [
     path: '/Change_Password',
     name: 'Change Password',
     component: ChangepwdMyntin
+  },
+  {
+    path: '/OTP_Sigin',
+    name: 'Otp Sigin',
+    component: OtploginMynt
   },
 ]
 

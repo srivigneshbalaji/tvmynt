@@ -29,6 +29,7 @@
                             </div>
 
                             <div class="px-4">
+
                                 <v-form ref="form" v-model="valid" lazy-validation>
                                     <div v-if="signinform">
                                         <v-text-field class="mb-3" v-model="userId" :rules="useridRules"
@@ -79,19 +80,18 @@
                                         </span>
                                     </v-btn>
 
-
                                     <p class="mb-0">
                                         <v-row no-gutters>
-                                            <v-col class="text-left">
+                                            <v-col cols="3" class="text-left pr-3">
                                                 <v-btn text :ripple="false" color="#1e53e5"
-                                                    class="forgotbtn px-0 mb-2 elevation-0" small @click="otpLogin()">
+                                                    class="forgotbtn px-0 mb-2 elevation-0" small @click="otpto()">
                                                     <span class="font-weight-bold text-capitalize">
                                                         GET OTP
                                                     </span>
                                                 </v-btn>
 
                                             </v-col>
-                                            <v-col class="text-right">
+                                            <v-col cols="9" class="text-right">
                                                 <v-list-item-title v-if="signinform">
                                                     <v-btn text :ripple="false" color="#1e53e5"
                                                         class="forgotbtn px-0 mb-2 elevation-0" small
@@ -111,49 +111,7 @@
                                     </p>
                                 </v-form>
                             </div>
-                            <div class="text-center">
-                                <v-dialog v-model="otpdialog" max-width="400">
-                                    <v-card class="elevation-0 rounded-xl">
-                                        <v-card-actions>
-                                            <v-row no-gutters>
-                                                <v-col>
-                                                    <div class="pt-1">
-                                                        <span class="font-weight-bold title">Get
-                                                            OTP</span>
-                                                    </div>
-                                                </v-col>
-                                                <v-col class="text-right">
-                                                    <v-btn icon @click="otpdialog = false">
-                                                        <v-icon>mdi-close</v-icon>
-                                                    </v-btn>
-                                                </v-col>
-                                            </v-row>
-                                        </v-card-actions>
-                                        <v-divider></v-divider>
 
-                                        <v-card-text>
-                                            <v-form ref="form" v-model="validotp" lazy-validation>
-                                                <v-text-field class="mb-3" v-model="otpuserId" :rules="otpuseridRules"
-                                                    label="Client ID" required
-                                                    oninput="this.value = this.value.toUpperCase()"></v-text-field>
-
-                                                <v-text-field class="mb-3" v-model="otppan"
-                                                    :append-icon="otppaneye ? 'mdi-eye' : 'mdi-eye-off'"
-                                                    :rules="otppanRules" :type="otppaneye ? 'text' : 'password'"
-                                                    label="PAN" @click:append="otppaneye = !otppaneye" required
-                                                    oninput="this.value = this.value.toUpperCase()"></v-text-field>
-
-                                                <v-btn :disabled="!validotp" color="#1e53e5"
-                                                    class="btnout mb-1 rounded-md elevation-0" large @click="otpSend()">
-                                                    <span class="font-weight-bold white--text text-capitalize">
-                                                        Send OTP
-                                                    </span>
-                                                </v-btn>
-                                            </v-form>
-                                        </v-card-text>
-                                    </v-card>
-                                </v-dialog>
-                            </div>
                             <!-- <div v-else class="px-4">
                                 <v-avatar color="teal" size="40" class="mb-4">
                                     <span class="white--text font-weight-bold title text-uppercase">{{
@@ -233,15 +191,12 @@ import { mynturl } from "../../apiUrl.js";
 
 export default {
     data: () => ({
-        otpdialog: false,
-
         snackbar: false,
         snackbarclr: 'default',
         snackmsgbar: "",
         signinform: true,
         uid: [],
         valid: true,
-        validotp: true,
 
         userId: '',
         useridRules: [
@@ -260,18 +215,6 @@ export default {
             v => !!v || 'PAN/DOB/OTP is required',
             v => v.length >= 5 || 'PAN/DOB/OTP of minimum 5 characters or must be valid',
             // v => /[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(v) || 'PAN number must be valid',
-        ],
-
-        otpuserId: '',
-        otpuseridRules: [
-            v => !!v || 'Client Id is required',
-        ],
-
-        otppaneye: false,
-        otppan: '',
-        otppanRules: [
-            v => !!v || 'PAN is required',
-            v => /[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(v) || 'PAN number must be valid',
         ],
 
         actid: "",
@@ -325,6 +268,13 @@ export default {
                             axiosThis.snackbarclr = 'warning';
                             axiosThis.snackmsgbar = "Wrong Password.";
                             axiosThis.password = "";
+                        } else if (response.data.emsg == "Invalid Input : Invalid OTP") {
+                            console.log("uid else if otp", response.data.emsg);
+                            axiosThis.signinform = true;
+                            axiosThis.snackbar = true;
+                            axiosThis.snackbarclr = 'warning';
+                            axiosThis.snackmsgbar = "Invalid OTP.";
+                            axiosThis.twofact = "";
                         } else if (response.data.emsg == "Invalid Input : Wrong PAN/DOB/OTP") {
                             console.log("uid else if 2fa", response.data.emsg);
                             axiosThis.snackbar = true;
@@ -332,7 +282,7 @@ export default {
                             axiosThis.snackmsgbar = "Wrong PAN/DOB/OTP number.";
                             axiosThis.twofact = "";
                         } else if (response.data.emsg == "Invalid Input : User Blocked due to multiple wrong attempts") {
-                            console.log("uid else if 2fa", response.data.emsg);
+                            console.log("uid else if for pws", response.data.emsg);
                             axiosThis.snackbar = true;
                             axiosThis.snackbarclr = 'error';
                             axiosThis.snackmsgbar = "User Blocked due to multiple wrong attempts.";
@@ -381,50 +331,8 @@ export default {
                     });
             }
         },
-
-        otpLogin() {
-            this.otpdialog = true;
-        },
-        otpSend() {
-            this.$refs.form.validate();
-            if (this.$refs.form.validate() != false) {
-                var axiosThis = this;
-
-                var data = `jData={"uid":"${this.otpuserId}","pan":"${this.otppan}"}`;
-                var config = {
-                    method: 'post',
-                    url: `${mynturl}/FgtPwdOTP`,
-                    headers: {
-                        'Content-Type': 'text/plain'
-                    },
-                    data: data
-                };
-
-                axios(config)
-                    .then(function (response) {
-                        console.log(JSON.stringify(response.data));
-                        console.log("otpSend", response.data);
-                        if (response.data.ReqStatus == "OTP generation success") {
-                            axiosThis.otpdialog = false;
-                            axiosThis.otpuserId = axiosThis.userId;
-                            axiosThis.snackbar = true;
-                            axiosThis.snackbarclr = 'success';
-                            axiosThis.snackmsgbar = "OTP generation success, send through email/SMS.";
-                        } else if (response.data.emsg == "Error Occurred : Wrong user id or user details") {
-                            axiosThis.snackbar = true;
-                            axiosThis.snackbarclr = 'error';
-                            axiosThis.snackmsgbar = "Invalid User or Invalid Client ID.";
-                        } else {
-                            axiosThis.snackbar = true;
-                            axiosThis.snackbarclr = 'error';
-                            axiosThis.snackmsgbar = "OTP not generation, kindly try again.";
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-
-            }
+        otpto() {
+            this.$router.push("/OTP_Sigin");
         },
         forgotPws() {
             this.$router.push("/Forgot_Password");
@@ -437,23 +345,6 @@ export default {
             this.password = "";
             this.twofact = "";
         },
-
-        // authoRize() {
-        //     var loginfo = localStorage.getItem("loginway");
-        //     console.log("loginfo", loginfo)
-        //     if ((loginfo == "MyntOk") && (this.udmynt) && (this.udmynt.actid == this.actid) && (this.udmynt.email == this.email)) {
-        //         var logininfo = loginfo;
-        //         localStorage.setItem("loginway", logininfo);
-        //         this.$router.push("/myntpro-tv");
-        //         // console.log("authoRize if", (loginfo == "MyntOk") && (this.udmynt) && (this.udmynt.actid == this.actid) && (this.udmynt.email == this.email));
-        //     } else {
-        //         this.snackbar = true;
-        //         this.snackmsgbar = "Session expired, Kindly Sign in again.";
-        //         this.snackbarclr = 'warning';
-        //         this.signinform = true;
-        //         // console.log("authoRize else", (loginfo == "MyntOk") && (this.udmynt) && (this.udmynt.actid == this.actid) && (this.udmynt.email == this.email));
-        //     }
-        // }
     },
 
     mounted() {

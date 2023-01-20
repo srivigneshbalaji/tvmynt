@@ -121,7 +121,7 @@ export default {
         this.$router.push("/myntpro-tv");
         console.log("udmynt if", this.udmynt.actid, this.udmynt.email, this.actid, this.email);
       } else {
-        this.$router.push("/myntpro-signin");
+        this.$router.push("/MyntPro_Signin");
         console.log("udmynt else", this.udmynt.actid, this.udmynt.email, this.actid, this.email);
       }
     }

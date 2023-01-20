@@ -152,7 +152,7 @@ export default {
           axiosThis.snackmsgbar = "User not found, Kindly Sign in.";
         }
         setTimeout(function () {
-          axiosThis.$router.push("/myntpro-signin");
+          axiosThis.$router.push("/MyntPro_Signin");
         }, 2000);
       });
 
@@ -177,7 +177,7 @@ export default {
           // console.log(JSON.stringify(response.data));
           console.log("lomynt", response.data);
           if (response.data.stat == "Ok") {
-            axiosThis.$router.push("/myntpro-signin");
+            axiosThis.$router.push("/MyntPro_Signin");
           }
 
         })
