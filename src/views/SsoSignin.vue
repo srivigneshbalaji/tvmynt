@@ -6,7 +6,7 @@
         <v-col cols="4">
           <v-card max-width="400" class="mx-auto my-auto elevation-0 py-8 pb-1 rounded-lg text-center">
             <div class="px-4 px-sm-2">
-              <div class="pb-16">
+              <div class="pb-12">
                 <img src="@/assets/Mynt_pro_logo.svg" width="40%">
               </div>
               <!-- <div class="pb-16">
@@ -17,9 +17,15 @@
               <v-card-action>
                 <div class="px-4">
                   <!-- to="/tv" -->
-                  <v-btn @click="signin()" outlined :ripple="false" block large class="btnout mb-2 rounded-md">
+                  <v-btn @click="signIn()" outlined :ripple="false" block large class="btnout mb-6 rounded-md">
                     <span style="color:black;">
                       sign in with ZEBULL
+                    </span>
+                  </v-btn>
+
+                  <v-btn @click="myntIn()" outlined :ripple="false" block large class="btnout mb-2 rounded-md">
+                    <span style="color:black;">
+                      sign in with Client ID
                     </span>
                   </v-btn>
 
@@ -94,15 +100,63 @@
 </template>
 
 <script>
-import { appurl } from "../apiUrl.js";
+import axios from "axios";
+import { appurl, mynturl } from "../apiUrl.js";
 
 export default {
-  data: () => ({}),
+  data: () => ({
+    actid: "",
+    email: "",
+    susertoken: "",
+
+    udmynt: [],
+  }),
   methods: {
-    signin() {
-      // console.log("pressed");
-      location.href = `https://zebull.in/?mode=SSO&vendor=MyZebu&redirectUrl=${appurl}/tv`;
+    signIn() {
+      location.href = `https://zebull.in/?mode=SSO&vendor=MyZebu&redirectUrl=${appurl}/zebull-tv`;
     },
+    myntIn() {
+
+      if ((this.actid != null) && (this.email != null) && (this.udmynt.actid == this.actid) && (this.udmynt.email == this.email)) {
+        this.$router.push("/myntpro-tv");
+        console.log("udmynt if", this.udmynt.actid, this.udmynt.email, this.actid, this.email);
+      } else {
+        this.$router.push("/myntpro-signin");
+        console.log("udmynt else", this.udmynt.actid, this.udmynt.email, this.actid, this.email);
+      }
+    }
+  },
+  mounted() {
+    // if (this.logininfo == "MyntOk") {}
+    this.actid = localStorage.getItem("actid");
+    this.susertoken = localStorage.getItem("susertoken");
+    this.email = localStorage.getItem("email");
+
+    console.log("cliixzxzd", this.actid, this.susertoken, this.email);
+    var axiosThis = this;
+
+    var data = `jData={"uid":"${this.actid}"}&jKey=${this.susertoken}`;
+
+    var udmyntconfig = {
+      method: 'post',
+      url: `${mynturl}/UserDetails`,
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+      data: data
+    };
+
+    axios(udmyntconfig)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data));
+        axiosThis.udmynt = response.data;
+        console.log("udmynt sign", axiosThis.udmynt.email, axiosThis.udmynt.actid);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   },
 };
 </script>

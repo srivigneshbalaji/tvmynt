@@ -1,0 +1,651 @@
+{
+	"info": {
+		"_postman_id": "5ac2587f-a3e4-48dd-a981-4b39452d06d4",
+		"name": "Mynt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20781355"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "quickAuth",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"pwd\":\"7bd561424d582abd5d01ed578daf5208973939a9beb0cf44271ef812137d60f7\",\"factor2\":\"AZSPJ2347N\",\"apkversion\":\"20220921\",\"imei\":\"\",\"vc\":\"PRO_MYNT\",\"appkey\":\"6b21a9734e4f122f24e547a29160b982b90cc63f29799757486ffc83caec036e\",\"source\":\"API\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/QuickAuth",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"QuickAuth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\"}&jKey=28a0263810450cd6e20729af6053fc45753f470416387552aef9f54348c73cea ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/Logout",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"Logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userDetail",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\"}&jKey=38e5dcdca2c4c33c0d5493ff1525d4b8aab4e172d369b680f620505de6a5e5c1",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/UserDetails",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"UserDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgotPass",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"pan\":\"AZSPJ2347N\",\"dob\":\"15021984\"} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/ForgotPassword",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"ForgotPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePass",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"oldpwd\":\"667c39ea331eff101b25a738e861078c589a636130688f9ed58a367b57c9158db5\",\"pwd\":\"1234@Zebu\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/Changepwd",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"Changepwd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clientDetails",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"actid\":\"JAMAL\",\"brkname\":\"ZEBU\"}&jKey=37de6eb0e6e5401d65c0953df51ss5c78x8bda580f9d727f4f62d382d1f70463e0e",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/ClientDetails",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"ClientDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WatchList",
+			"item": [
+				{
+					"name": "MWList",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"wlname\":\"ram\",\"scrips\":\"NSE|22\"}&jKey=57b93bd39e9eb50bc6b7600c9e4874fd56a625e8262a5281349de6f46997c17e",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/AddMultiScripsToMW",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"AddMultiScripsToMW"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MarketWatch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"wlname\":\"1\"}&jKey=57b93bd39e9eb50bc6b7600c9e4874fd56a625e8262a5281349de6f46997c17e",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/MarketWatch",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"MarketWatch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchScript",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"stext\":\"tc\"}&jKey=57b93bd39e9eb50bc6b7600c9e4874fd56a625e8262a5281349de6f46997c17e",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/SearchScrip",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"SearchScrip"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddMWatchScript",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"wlname\":\"PREM\",\"scrips\":\"NSE|22\"}&jKey=57b93bd39e9eb50bc6b7600c9e4874fd56a625e8262a5281349de6f46997c17e",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/AddMultiScripsToMW",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"AddMultiScripsToMW"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetQuotes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"exch\":\"NSE\",\r\n\"token\":\"5162\"}&jKey=b578c9287e464b40cad5f8675e386a1873d13d79967ad71d75fd93075e6509a3",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/GetQuotes",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"GetQuotes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSecurityInfo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\", \"exch\":\"NSE\",\r\n\"token\":\"22\"}&jKey=2ebbe58ed2ba17d5ec7350033023bcf8259128c386df04e3fe81be1f9282908c"
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/GetSecurityInfo",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"GetSecurityInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteMWatchScript",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"wlname\":\"2\",\"scrips\":\"NSE|5900\"}&jKey=54dccdd9b399126224a125e1e62def3a4ece83dd7ecc7e888c123d617485975a",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/DeleteMultiMWScrips",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"DeleteMultiMWScrips"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "holding",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"actid\":\"JAMAL\",\"prd\":\"C\"}&jKey=89e771a59086e601735e818346cd0db46681f548e31b6db961df5583d19449ea"
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/Holdings",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"Holdings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orderBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/OrderBook",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"OrderBook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "positionBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"actid\":\"JAMAL\"}&jKey=106045c67c9dc82a1d698f555a6aab59ee7ff4ffe3dba201a34e9c5d0fcca369",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/PositionBook",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"PositionBook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tradeBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"actid\":\"JAMAL\"}&jKey=d9dc6346389d9389c540d3c61580a3d602a96815ec95984d879d70ebc86c888a"
+						},
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/TradeBook",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"TradeBook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "placeOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "jData={\"uid\":\"JAMAL\",\"actid\":\"JAMAL\",\"exch\":\"NSE\",\"tsym\":\"JINDWORLD-EQ\",\"qty\":\"\",\"mkt_protection\":\"\",\"prc\":\"\",\"trgprc\":\"\",\"dscqty\":\"\",\"prd\":\"C\",\"trantype\":\"\",\"prctyp\":\"SL-LMT\",\"ret\":\"DAY\",\"ordersource\":\"MOB\"}&&jKey=42a3ab1742197b17e90820301d25bd2400aac35cb964135ceec66792c7108849",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://uat.mynt.in/NorenWClientTP/PlaceOrder",
+							"protocol": "https",
+							"host": [
+								"uat",
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"PlaceOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetLinkedScrips",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/GetLinkedScrips",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"GetLinkedScrips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderMargin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/GetLinkedScrips",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"GetLinkedScrips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOptionChain",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://mynt.in/NorenWClientTP/GetLinkedScrips",
+							"protocol": "https",
+							"host": [
+								"mynt",
+								"in"
+							],
+							"path": [
+								"NorenWClientTP",
+								"GetLinkedScrips"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,6 +1,14 @@
 <template>
   <div class="home">
     <div>
+      <div>
+      <TVChartContainer />
+    </div>
+      <v-snackbar class="pt-6 pr-6" style="z-index: 2 !important;" transition="slide-x-reverse-transition"
+        v-model="snackbar" :timeout="10000" :value="true" :color="snackbarclr" absolute outlined top right>
+        <v-icon class="mr-2" :color="snackbarclr">mdi-alert-outline</v-icon>
+        {{ snackmsgbar }}
+      </v-snackbar>
       <v-card class="appbarbor elevation-0 rounded-0 pl-2 pr-1">
         <v-row no-gutters>
           <v-col class="my-auto" cols="6">
@@ -12,16 +20,14 @@
             <div class="menusty">
               <v-menu down offset-y transition="slide-y-transition">
                 <template v-slot:activator="{ on, attrs }">
-                  <!-- <v-btn  class="rounded-lg elevation-0" fab > -->
                   <v-avatar color="teal" size="32" v-bind="attrs" v-on="on">
-                    <span class="white--text font-weight-bold title text-uppercase">{{ cliname.slice(0, 1) }}</span>
-                    <!-- <v-icon color="white">mdi-account-circle</v-icon> -->
-                    <!-- <img src="@/assets/user.svg" alt=""> -->
+                    <span v-if="ssologinfo == 'ZebullOk'" class="white--text font-weight-bold title text-uppercase">{{
+                      cliname.slice(0, 1)
+                    }}</span>
                   </v-avatar>
-                  <!-- </v-btn> -->
                 </template>
                 <v-card class="py-2 rounded-lg elevation-0">
-                  <v-list-item class="pl-4 pr-0">
+                  <v-list-item v-if="ssologinfo == 'ZebullOk'" class="pl-4 pr-0">
                     <v-list-item-avatar color="teal" class="text-center">
                       <p class="white--text font-weight-bold headline text-uppercase mb-0 ml-3">{{
                         cliname.slice(0, 1)
@@ -79,78 +85,121 @@
         </v-row>
       </v-card>
     </div>
-    <div>
-      <TVChartContainer />
-    </div>
-    <div></div>
 
+   
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import { apiurl } from '../apiUrl.js'
-import TVChartContainer from '../components/TVChartContainer.vue';
+import { apiurl } from '../../apiUrl.js'
+import TVChartContainer from '../../components/TVChartContainer.vue';
 
 export default {
   data: () => ({
-    clientname: "",
-    session: "",
-    clientId: "",
+    /* eslint-disable */
+    snackbar: false,
+    snackbarclr: 'default',
+    snackmsgbar: "",
+
+    ssologinfo: "",
+    logininfo: "",
+    authcode: "",
 
     cliid: "",
     cliname: "",
+    usession: "",
   }),
+
   components: {
     TVChartContainer
   },
+
   mounted() {
-    var axiosthis = this;
-    var authcode = new URL(window.location.href).searchParams.get("authCode");
 
-    if (authcode) {
-      // console.log("aut", authcode);
-      var confiigg = {
-        method: "post",
-        url: `${apiurl}/ssoclient_check?code=` + authcode,
-        headers: {},
-      };
+    this.authcode = new URL(window.location.href).searchParams.get("authCode");
+    console.log("authcode", this.authcode)
+    var axiosThis = this;
 
-      axios(confiigg)
-        .then(function (response) {
-          console.log(response.data);
-          if (response.data.client_code !== undefined) {
-            axiosthis.session = response.data.clientsession;
-            axiosthis.clientId = response.data.client_code;
-            axiosthis.clientname = response.data.clientName
+    if (this.authcode != null) {
+      var logininfo = "ZebullOk";
+      localStorage.setItem("loginway", logininfo);
+      localStorage.setItem("lastway", logininfo);
 
-            localStorage.setItem("userid", axiosthis.clientId);
-            localStorage.setItem("username", axiosthis.clientname);
-            localStorage.setItem("usession", axiosthis.session);
+      // console.log("zebull", this.cliname)
+      var axiosThis = this;
 
-            axiosthis.cliid = localStorage.getItem("userid");
-            var secid = localStorage.getItem("usession");
-            axiosthis.cliname = localStorage.getItem("username");
-            console.log("cliixzxzd", axiosthis.cliid, secid, axiosthis.cliname);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      if (this.authcode) {
+        var ssoconfig = {
+          method: "post",
+          url: `${apiurl}/ssoclient_check?code=` + this.authcode,
+          headers: {},
+        };
+
+        axios(ssoconfig)
+          .then(function (response) {
+            console.log("ssosignin sso", response.data);
+            if (response.data.client_code !== undefined) {
+              localStorage.setItem("userid", response.data.client_code);
+              localStorage.setItem("username", response.data.clientName);
+              localStorage.setItem("usession", response.data.clientsession);
+
+              axiosThis.ssologinfo = localStorage.getItem("loginway");
+              axiosThis.cliid = localStorage.getItem("userid");
+              axiosThis.usession = localStorage.getItem("usession");
+              axiosThis.cliname = localStorage.getItem("username");
+              console.log("cliixzxzd sso", axiosThis.ssologinfo, axiosThis.cliid, axiosThis.usession, axiosThis.cliname);
+            } else if ((axiosThis.cliid == null) || (axiosThis.usession == null) || (axiosThis.cliname == null)) {
+              axiosThis.$router.push("/");
+            }
+            else {
+              axiosThis.$router.push("/");
+            }
+
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
     }
-    if ((axiosthis.clientId == null) && (axiosthis.session == null)) {
-      axiosthis.$router.push("/");
-    }
+    // else {
+    //   var lastout = localStorage.getItem("lastway");
 
+    //   console.log("logininfo", this.logininfo)
+    //   this.usernotfound = false;
+    //   this.snackbar = true;
+    //   if (lastout != null) {
+    //     console.log("logininfo if", this.logininfo, this.authcode)
 
+    //     this.snackmsgbar = "Session expired, Kindly Sign in again.";
+    //     setTimeout(function () {
+    //       axiosThis.$router.push("/");
+    //     }, 2000);
+    //   } else {
+    //     console.log("logininfo else", this.logininfo, this.authcode)
+
+    //     this.snackmsgbar = "User not found, Kindly Sign in.";
+    //     setTimeout(function () {
+    //       axiosThis.$router.push("/");
+    //     }, 2000);
+    //   }
+    //   this.snackbarclr = 'warning';
+    //   localStorage.removeItem("lastway");
+    // }
   },
+
   methods: {
     logout() {
-      localStorage.removeItem("userid");
-      localStorage.removeItem("username");
-      localStorage.removeItem("usession");
-      this.$router.push("/")
-      window.location.reload();
+      if ((this.cliname != null) && (this.ssologinfo == "ZebullOk") && (this.authcode != null)) {
+        localStorage.removeItem("loginway");
+        localStorage.removeItem("userid");
+        localStorage.removeItem("usession");
+        localStorage.removeItem("username");
+        this.$router.push("/");
+        window.location.reload();
+      }
+      // this.$router.push("/");
+      // window.location.reload();
     },
   }
 }

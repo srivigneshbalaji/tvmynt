@@ -1,27 +1,47 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import SsoSignin from '../views/SsoSignin.vue'
-import TradingView from '../components/TVChartContainer.vue'
 
+import SsoSignin from '../views/SsoSignin.vue'
+
+import TradingViewzebull from '../views/zebull login/TradingViewzebull.vue'
+
+import TradingViewmynt from '../views/mynt login/TradingViewmynt.vue'
+import SsoMyntin from '../views/mynt login/SsoMyntin.vue'
+import FgotpwsMyntin from '../views/mynt login/FgotpwsMyntin.vue'
+import ChangepwdMyntin from '../views/mynt login/ChangepwdMyntin.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/tv',
-    name: 'home',
-    component: HomeView
+    path: '/zebull-tv',
+    name: 'trading view zebull',
+    component: TradingViewzebull
+  },
+  {
+    path: '/myntpro-tv',
+    name: 'trading view mynt',
+    component: TradingViewmynt
   },
   {
     path: '/',
-    name: 'SsoSignin',
+    name: 'ssosignin',
     component: SsoSignin
   },
   {
-    path: '/tradingview',
-    name: 'TradingView',
-    component: TradingView
+    path: '/myntpro-signin',
+    name: 'Sso Mynt login',
+    component: SsoMyntin
+  },
+  {
+    path: '/Forgot_Password',
+    name: 'Forgot Password',
+    component: FgotpwsMyntin
+  },
+  {
+    path: '/Change_Password',
+    name: 'Change Password',
+    component: ChangepwdMyntin
   },
 ]
 
